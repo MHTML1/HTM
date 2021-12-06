@@ -1,12 +1,13 @@
-/*# Exclusively from danuma project 
-# Do not use this fore any commercial thing
-# If you abuse thais bot we wil kick you from bot 
-# Do not edit (Respect to the Devaoloper) 
-# All rights reserved ©Lasiya @lasiya99X t.me/lasiya99X
-# Get more about devaoloper https://lasiya.mlcy
+/* Copyright (C) 2020 Yusuf Usta.
+
+Licensed under the  GPL-3.0 License;
+you may not use this file except in compliance with the License.
+
+WhatsAsena - Yusuf Usta
+Developer & Co-Founder - Phaticusthiccy
 */
 
-const XTroid = require('../events');
+const Asena = require('../events');
 const {MessageType} = require('@adiwajshing/baileys');
 const Config = require('../config');
 
@@ -32,7 +33,7 @@ function secondsToHms(d) {
     return hDisplay + mDisplay + sDisplay; 
 }
 
-XTroid.addCMD({on: 'text', fromMe: false, deleteCommand: false}, (async (message, match) => {
+Asena.addCommand({on: 'text', fromMe: false, deleteCommand: false}, (async (message, match) => {
     if (Config.AFKMSG == 'default') {
 
         if (AFK.isAfk && ((!message.jid.includes('-')) || (message.jid.includes('-') && 
@@ -84,7 +85,7 @@ XTroid.addCMD({on: 'text', fromMe: false, deleteCommand: false}, (async (message
     }
 }));
 
-XTroid.addCMD({on: 'text', fromMe: true, deleteCommand: false}, (async (message, match) => {
+Asena.addCommand({on: 'text', fromMe: true, deleteCommand: false}, (async (message, match) => {
     if (AFK.isAfk && !message.id.startsWith('3EB0')) {
         AFK.lastseen = 0;
         AFK.reason = false;
@@ -94,7 +95,7 @@ XTroid.addCMD({on: 'text', fromMe: true, deleteCommand: false}, (async (message,
     }
 }));
 
-XTroid.addCMD({pattern: 'afk ?(.*)', fromMe: true, deleteCommand: false, desc: Lang.AFK_DESC}, (async (message, match) => {     
+Asena.addCommand({pattern: 'afk ?(.*)', fromMe: true, deleteCommand: false, desc: Lang.AFK_DESC}, (async (message, match) => {     
     if (!AFK.isAfk) {
         AFK.lastseen = Math.round((new Date()).getTime() / 1000);
         if (match[1] !== '') { AFK.reason = match[1]; }

@@ -1,656 +1,348 @@
-/* 
+/* Codded by @phaticusthiccy
+Telegram: t.me/phaticusthiccy
+Instagram: www.instagram.com/kyrie.baran
 */
 
-const lasiapi = require('textmaker-lasi'); // Import NPM Package
-
-const XTroid = require('../events');
-const {MessageType, GroupSettingChange, Mimetype, MessageOptions} = require('@adiwajshing/baileys');
+const Asena = require('../events');
+const { MessageType, MessageOptions, Mimetype } = require('@adiwajshing/baileys');
 const fs = require('fs');
+const axios = require('axios');
 const Config = require('../config');
-const axios = require('axios')
-const request = require('request');
-const os = require('os');
-var clh = { cd: 'L3Jvb3QvSFRNLw==', pay: '' }    
-var ggg = Buffer.from(clh.cd, 'base64')
-var ddd = ggg.toString('utf-8')
-clh.pay = ddd
-if (os.userInfo().homedir !== clh.pay) return;
-var desc_msg = ''
-if (Config.LANG == 'SI') desc_msg = 'X-Troid Logo එකතුව'
-if (Config.LANG == 'EN') desc_msg = 'X-Troid Logo colection'
-const need = "*type some word after command*\n*විධානයට පසුව වචනයක් ලියන්න"
+const ffmpeg = require('fluent-ffmpeg');
+const {execFile} = require('child_process');
+const cwebp = require('cwebp-bin');
 let wk = Config.WORKTYPE == 'public' ? false : true
+const WhatsAsenaStack = require('whatsasena-npm')
+const request = require('request');
 
-XTroid.addCMD({pattern: 'lpack$', fromMe: wk, desc: desc_msg}, (async (message, match) => {
-    var t1 = ''
-    var t2 = ''
-    var t3 = ''
-    var t4 = ''
-    var t5 = ''
-    var t6 = ''
-    var t7 = ''
-    var t8 = ''
-    var t9 = ''
-    var t10 = ''
-    var t11 = ''
-    var t12 = ''
-    var t13 = ''
-    var t14 = ''
-    var t15 = ''
-    var t16 = ''
-    var t17 = ''
-    var t18 = ''
-    var t19 = ''
-    var t20 = ''
-    var t21 = ''
-    var t22 = ''
-    var t23 = ''
-    var t24 = ''
-    var t25 = ''
-    var t26 = ''
-    var t27 = ''
-    var t28 = ''
-    var t29 = ''
-    if (Config.LANG == 'SI') {
-        t1 = 'Devil Logo.' // https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html
-        t2 = 'Bear Icon.' // https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html
-        t3 = 'Neon Effect.' // https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html
-        t4 = 'Neon Effect.' // https://textpro.me/neon-text-effect-online-879.html
-        t5 = 'Lightning Logo.' // https://textpro.me/thunder-text-effect-online-881.html
-        t6 = 'Joker Themed Logo.' // https://textpro.me/create-logo-joker-online-934.html
-        t7 = 'Ninja Themed Logos.' // https://textpro.me/create-ninja-logo-online-935.html
-        t8 = 'Glitter Themed Logo.' // https://textpro.me/advanced-glow-text-effect-873.html
-        t9 = 'Logo With Bokeh Effect.' // https://textpro.me/bokeh-text-effect-876.html
-        t10 = 'Logo With Wolf Icon.' // https://textpro.me/create-wolf-logo-galaxy-online-936.html
-        t11 = 'Black And White Marvel Logo.' // https://textpro.me/create-logo-style-marvel-studios-online-971.html
-        t12 = 'Colorful Marvel Logo.' // https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html
-        t13 = 'The Avengers Logo.' // https://textpro.me/create-3d-avengers-logo-online-974.html
-        t14 = 'Logo With Glitch Effect.' // https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html
-        t15 = 'Graffiti Themed Logo.' // https://textpro.me/create-cool-wall-graffiti-text-effect-online-1009.html
-        t16 = 'Second Graffiti Themed Logo.' // https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html
-        t17 = 'Lion Themed Logo.' // https://textpro.me/create-lion-logo-mascot-online-938.html
-        t18 = 'Third Neon Themed Logo.' // https://textpro.me/neon-text-effect-online-963.html
-        t19 = 'Ice Themed Logo.' // https://textpro.me/ice-cold-text-effect-862.html
-        t20 = 'Space Themed Logo.' // https://textpro.me/create-space-3d-text-effect-online-985.html
-        t21 = 'Logo With Smoke Effect.' // https://photooxy.com/other-design/create-an-easy-smoke-type-effect-390.html
-        t22 = 'Naruto Themed Logo.' // https://photooxy.com/manga-and-anime/make-naruto-banner-online-free-378.html
-        t23 = 'Glow Themed Logo.' // https://photooxy.com/logo-and-text-effects/make-smoky-neon-glow-effect-343.html        
-        t25 = 'Flame Themed Logo.' // https://photooxy.com/logo-and-text-effects/realistic-flaming-text-effect-online-197.html
-        t27 = 'Fourth Neon-Themed Logo.' // https://photooxy.com/logo-and-text-effects/illuminated-metallic-effect-177.html
+const Language = require('../language');
+const Lang = Language.getString('ttp');
 
-    }
-    else {
-        t1 = 'Devil Themed Logo.' // https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html
-        t2 = 'Logo With Bear Icon.' // https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html
-        t3 = 'Logo With Neon Effect.' // https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html
-        t4 = 'Logo With Second Neon Effect.' // https://textpro.me/neon-text-effect-online-879.html
-        t5 = 'Lightning Themed Logo.' // https://textpro.me/thunder-text-effect-online-881.html
-        t6 = 'Joker Themed Logo.' // https://textpro.me/create-logo-joker-online-934.html
-        t7 = 'Ninja Themed Logos.' // https://textpro.me/create-ninja-logo-online-935.html
-        t8 = 'Glitter Themed Logo.' // https://textpro.me/advanced-glow-text-effect-873.html
-        t9 = 'Logo With Bokeh Effect.' // https://textpro.me/bokeh-text-effect-876.html
-        t10 = 'Logo With Wolf Icon.' // https://textpro.me/create-wolf-logo-galaxy-online-936.html
-        t11 = 'Black And White Marvel Logo.' // https://textpro.me/create-logo-style-marvel-studios-online-971.html
-        t12 = 'Colorful Marvel Logo.' // https://textpro.me/create-logo-style-marvel-studios-ver-metal-972.html
-        t13 = 'The Avengers Logo.' // https://textpro.me/create-3d-avengers-logo-online-974.html
-        t14 = 'Logo With Glitch Effect.' // https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html
-        t15 = 'Graffiti Themed Logo.' // https://textpro.me/create-cool-wall-graffiti-text-effect-online-1009.html
-        t16 = 'Second Graffiti Themed Logo.' // https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html
-        t17 = 'Lion Themed Logo.' // https://textpro.me/create-lion-logo-mascot-online-938.html
-        t18 = 'Third Neon Themed Logo.' // https://textpro.me/neon-text-effect-online-963.html
-        t19 = 'Ice Themed Logo.' // https://textpro.me/ice-cold-text-effect-862.html
-        t20 = 'Space Themed Logo.' // https://textpro.me/create-space-3d-text-effect-online-985.html
-        t21 = 'Logo With Smoke Effect.' // https://photooxy.com/other-design/create-an-easy-smoke-type-effect-390.html
-        t22 = 'Naruto Themed Logo.' // https://photooxy.com/manga-and-anime/make-naruto-banner-online-free-378.html
-        t23 = 'Glow Themed Logo.' // https://photooxy.com/logo-and-text-effects/make-smoky-neon-glow-effect-343.html        
-        t25 = 'Flame Themed Logo.' // https://photooxy.com/logo-and-text-effects/realistic-flaming-text-effect-online-197.html
-        t27 = 'Fourth Neon-Themed Logo.' // https://photooxy.com/logo-and-text-effects/illuminated-metallic-effect-177.html
+var description = ''
+var cmd = ''
+var cmd_desc = ''
+if (Config.LANG == 'TR') description = 'Tüm ttp komutlarını gösterir.', cmd = '*Komut:* ', cmd_desc = '*Açıklama:* '
+if (Config.LANG == 'AZ') description = 'Bütün ttp əmrlərini göstərir.', cmd = '*Əmr:* ', cmd_desc = '*İzahat:* '
+if (Config.LANG == 'EN') description = 'Shows all ttp commands.', cmd = '*Command:* ', cmd_desc = '*Description:* '
+if (Config.LANG == 'RU') description = 'Показывает все команды ttp.', cmd = '*Команда:* ', cmd_desc = '*Объяснение:* '
+if (Config.LANG == 'ES') description = 'Muestra todos los comandos ttp.', cmd = '*Mando:* ', cmd_desc = '*Explicación:* '
+if (Config.LANG == 'HI') description = 'सभी ttp कमांड दिखाता है।', cmd = '*आदेश:* ', cmd_desc = '*व्याख्या:* '
+if (Config.LANG == 'ML') description = 'എല്ലാ ttp കമാൻഡുകളും കാണിക്കുന്നു.', cmd = '*കമാൻഡ്:* ', cmd_desc = '*വിശദീകരണം:* '
+if (Config.LANG == 'PT') description = 'Mostra todos os comandos ttp.', cmd = '*Comando:* ', cmd_desc = '*Explicação:* '
+if (Config.LANG == 'ID') description = '*Menampilkan semua perintah ttp.', cmd = '*Memerintah:* ', cmd_desc = '*Penjelasan:* '
 
-
-    }
-    var usage_cmd = ''
-    var command_cmd = ''
-    var desc_cmd = ''
-    if (Config.LANG == 'SI') {
-        usage_cmd = '🍀 *උදා :* _'
-        command_cmd = '💞 *විධානය :* '
-        desc_cmd = '🪶*විස්තරය :* _'
-    } else { 
-        usage_cmd = '🪶 Example : '
-        command_cmd = '🐹 Command : '
-        desc_cmd = '🍀 Desc : '
-    }
-    const msg = command_cmd + '```.devil``` \n' + t1 + '_\n' + usage_cmd + '*.devil Xtroid*\n\n' +
-        command_cmd + '```.bear``` \n' + desc_cmd + t2 + '_\n' + usage_cmd + '*.bear Xtroid*\n\n' +
-        command_cmd + '```.wolf``` \n' + desc_cmd + t10 + '_\n' + usage_cmd + '*.wolf Xtroid,Lasiya*\n\n' +
-        command_cmd + '```.neon```\n' + desc_cmd + t3 + '_\n' + usage_cmd + '*.neon Xtroid*\n\n' +
-        command_cmd + '```.2neon``` \n' + desc_cmd + t4 + '_\n' + usage_cmd + '*.2neon Xtroid*\n\n' +
-        command_cmd + '```.3neon``` \n' + desc_cmd + t18 + '_\n' + usage_cmd + '*.3neon Xtroid*\n\n' +
-        command_cmd + '```.light``` \n' + desc_cmd + t5 + '_\n' + usage_cmd + '*.light Xtroid*\n\n' +
-        command_cmd + '```.joker``` \n' + desc_cmd + t6 + '_\n' + usage_cmd + '*.joker Xtroid*\n\n' +
-        command_cmd + '```.ninja``` \n' + desc_cmd + t7 + '_\n' + usage_cmd + '*.ninja Xtroid,Lasiya*\n\n' +
-        command_cmd + '```.glitter``` \n' + desc_cmd + t8 + '_\n' + usage_cmd + '*.glitter Xtroid*\n\n' +
-        command_cmd + '```.bokeh``` \n' + desc_cmd + t9 + '_\n' + usage_cmd + '*.bokeh Xtroid*\n\n' +
-        command_cmd + '```.marvel``` \n' + desc_cmd + t11 + '_\n' + usage_cmd + '*.marvel Xtroid,Lasiya*\n\n' +
-        command_cmd + '```.2marvel``` \n' + desc_cmd + t12 + '_\n' + usage_cmd + '*.2marvel Xtroid,Lasiya*\n\n' +
-        command_cmd + '```.avengers``` \n' + desc_cmd + t13 + '_\n' + usage_cmd + '*.avengers Xtroid,Lasiya*\n\n' +
-        command_cmd + '```.graf``` \n' + desc_cmd + t15 + '_\n' + usage_cmd + '*.graf lasiya,Xtroid*\n\n' +
-        command_cmd + '```.2graf``` \n' + desc_cmd + t16 + '_\n' + usage_cmd + '*.2graf lasiya,Xtroid*\n\n' +       
-        command_cmd + '```.lion``` \n' + desc_cmd + t17 + '_\n' + usage_cmd + '*.lion lasiya,Xtroid*\n\n' +
-        command_cmd + '```.ice``` \n' + desc_cmd + t19 + '_\n' + usage_cmd + '*.ice Xtroid*\n\n' +
-        command_cmd + '```.space``` \n' + desc_cmd + t20 + '_\n' + usage_cmd + '*.space Xtroid,Lasiya*\n\n' +
-        command_cmd + '```.glitch``` \n' + desc_cmd + t14 + '_\n' + usage_cmd + '*.glitch Xtroid,Lasiya*\n\n'
-    await message.client.sendMessage(message.jid,msg, MessageType.text, { quoted: message.data })
+Asena.addCommand({ pattern: 'allttp$', fromMe: wk, desc: description }, (async (message, match) => {
+  var t1 = Lang.TTP_DESC
+  var t2 = Lang.ATTP_DESC
+  var t3 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı su temalı sticker'e çevirir." : "Converts text to water-themed sticker."
+  var t4 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı el yazısıyla sticker'e çevirir." : "Converts text to hand writing sticker."
+  var t5 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı blackbird temalı sticker'e çevirir." : "Converts text to blackbird-themed sticker."
+  var t6 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı sakız temalı sticker'e çevirir." : "Converts text to gum-themed sticker."
+  var t7 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı şirinler temalı sticker'e çevirir." : "Converts text to smurfs-themed sticker."
+  var t8 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı elektrik temalı sticker'e çevirir." : "Converts text to electric-themed sticker."
+  var t9 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı vurgulayan animasyonlu sticker'e çevirir." : "Converts text to highlighted animated sticker."
+  var t10 = Config.LANG == 'TR' || Config.LANG == 'AZ' ? "Yazıyı geçiş animasyonlu sticker'e çevirir." : "Converts text to transition animated sticker."
+  
+  var payload = cmd + '.ttp' + '\n' + cmd_desc + t1 + '\n\n' +
+    cmd + '.attp' + '\n' + cmd_desc + t2 + '\n\n' +
+    cmd + '.wttp' + '\n' + cmd_desc + t3 + '\n\n' +
+    cmd + '.http' + '\n' + cmd_desc + t4 + '\n\n' +
+    cmd + '.ahttp' + '\n' + cmd_desc + t9 + '\n\n' +
+    cmd + '.bttp' + '\n' + cmd_desc + t5 + '\n\n' +
+    cmd + '.gttp' + '\n' + cmd_desc + t6 + '\n\n' +
+    cmd + '.sttp' + '\n' + cmd_desc + t7 + '\n\n' +
+    cmd + '.ettp' + '\n' + cmd_desc + t8 + '\n\n' +
+    cmd + '.pttp' + '\n' + cmd_desc + t10
+    
+  await message.client.sendMessage(message.jid,payload, MessageType.text)
 }));
-
-XTroid.addCMD({pattern: 'lil ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/write-text-on-foggy-window-online-free-1015.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/lil.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/lil.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'ttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var uri = encodeURI(text)
+    var ttinullimage = await axios.get('https://api.xteam.xyz/ttp?file&text=' + uri, { responseType: 'arraybuffer' })
+    await message.client.sendMessage(message.jid,Buffer.from(ttinullimage.data), MessageType.image, { mimetype: Mimetype.png, caption: 'Made by WhatsAsena' })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var uri = encodeURI(match[1])
+    var ttinullimage = await axios.get('https://api.xteam.xyz/ttp?file&text=' + uri, { responseType: 'arraybuffer' })
+    await message.client.sendMessage(message.jid,Buffer.from(ttinullimage.data), MessageType.image, { mimetype: Mimetype.png, caption: 'Made by WhatsAsena' })
+  }
 }));
-XTroid.addCMD({pattern: 'devil ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/create-neon-devil-wings-text-effect-online-free-1014.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/devil.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/devil.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'attp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var uri = encodeURI(text)
+    var ttinullimage = await axios.get('https://api.xteam.xyz/attp?file&text=' + uri, { responseType: 'arraybuffer' })
+    await message.client.sendMessage(message.jid,Buffer.from(ttinullimage.data), MessageType.sticker, { mimetype: Mimetype.webp })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var uri = encodeURI(match[1])
+    var ttinullimage = await axios.get('https://api.xteam.xyz/attp?file&text=' + uri, { responseType: 'arraybuffer' })
+    await message.client.sendMessage(message.jid,Buffer.from(ttinullimage.data), MessageType.sticker, { mimetype: Mimetype.webp })
+  }
 }));
-XTroid.addCMD({pattern: 'bear ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/online-black-and-white-bear-mascot-logo-creation-1012.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/bear.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/bear.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'wttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Water?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/wttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/wttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Water?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/wttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/wttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: 'wolf ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = '';
-    }
-    lasiapi.textpro("https://textpro.me/create-wolf-logo-galaxy-online-936.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/wolf.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/wolf.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'http ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Style?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/http.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/http.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Style?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/http.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/http.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: 'neon ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/neon.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/neon.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'bttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Blackbird?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/bttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/bttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Blackbird?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/bttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/bttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: '2neon ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/neon-text-effect-online-879.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/neon2.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/neon2.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'gttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Fluffy?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/gttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/gttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Fluffy?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/gttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/gttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: 'light ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/create-thunder-text-effect-online-881.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/li.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/li.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'sttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Smurfs?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/sttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/sttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Smurfs?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/sttp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/sttp.png').videoFilters('chromakey=white').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: 'joker ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/create-logo-joker-online-934.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/joker.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/joker.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'ettp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Electric?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/ettp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/ettp.png').videoFilters('chromakey=#FFFFFF:similarity=0.01').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Electric?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/ettp.png', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/ettp.png').videoFilters('chromakey=#FFFFFF:similarity=0.01').save('af.png').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.png').outputOptions(["-y", "-vcodec libwebp"]).videoFilters('scale=2000:2000:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=2000:2000:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('st.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('st.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: 'ninja ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = '';
-    }
-    lasiapi.textpro("https://textpro.me/create-ninja-logo-online-935.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/ninja.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/ninja.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'ahttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Highlight-Animation?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/ahttp.gif', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/ahttp.gif').videoFilters('chromakey=black').save('af.gif').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.gif').outputOptions(["-y", "-vcodec libwebp", "-lossless 1", "-qscale 1", "-preset default", "-loop 0", "-an", "-vsync 0", "-s 600x600"]).videoFilters('scale=600:600:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=600:600:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('sticker.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('sticker.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Highlight-Animation?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/ahttp.gif', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/ahttp.gif').videoFilters('chromakey=black').save('af.gif').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.gif').outputOptions(["-y", "-vcodec libwebp", "-lossless 1", "-qscale 1", "-preset default", "-loop 0", "-an", "-vsync 0", "-s 600x600"]).videoFilters('scale=600:600:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=600:600:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('sticker.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('sticker.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: 'glitter ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/free-advanced-glow-text-effect-873.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/tt.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/tt.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
+Asena.addCommand({ pattern: 'pttp ?(.*)', fromMe: wk, dontAddCommandList: true }, (async (message, match) => {
+  if (message.reply_message) {
+    var text = message.reply_message.text
+    var ttinullimage = await WhatsAsenaStack.ttp(text, 'https://api.flamingtext.com/logo/Design-Memories-Animation?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/pttp.gif', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/pttp.gif').videoFilters('chromakey=white').save('af.gif').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.gif').outputOptions(["-y", "-vcodec libwebp", "-lossless 1", "-qscale 1", "-preset default", "-loop 0", "-an", "-vsync 0", "-s 600x600"]).videoFilters('scale=600:600:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=600:600:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('sticker.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('sticker.webp'), MessageType.sticker);
+        })
+      })
+    })
+  } else {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORD, MessageType.text);
+    var ttinullimage = await WhatsAsenaStack.ttp(match[1], 'https://api.flamingtext.com/logo/Design-Memories-Animation?_variations=true&text=', '&_loc=catdynamic')
+    var download = async(uri, filename, callback) => {
+      await request.head(uri, async(err, res, body) => {    
+        await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+    };
+    await download(ttinullimage.image, '/root/WhatsAsenaDuplicated/pttp.gif', async() => { 
+      ffmpeg('/root/WhatsAsenaDuplicated/pttp.gif').videoFilters('chromakey=white').save('af.gif').on('end', async () => {
+        ffmpeg('/root/WhatsAsenaDuplicated/af.gif').outputOptions(["-y", "-vcodec libwebp", "-lossless 1", "-qscale 1", "-preset default", "-loop 0", "-an", "-vsync 0", "-s 600x600"]).videoFilters('scale=600:600:flags=lanczos:force_original_aspect_ratio=decrease,format=rgba,pad=600:600:(ow-iw)/2:(oh-ih)/2:color=#00000000,setsar=1').save('sticker.webp').on('end', async () => {
+          await message.sendMessage(fs.readFileSync('sticker.webp'), MessageType.sticker);
+        })
+      })
+    })
+  }
 }));
-XTroid.addCMD({pattern: 'bokeh ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/bokeh-text-effect-876.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/bkh.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/bkh.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: 'marvel ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-logo-style-marvel-studios-online-971.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/marvel.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/marvel.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: '2marvel ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-3d-avengers-logo-online-974.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/mar2.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/mar2.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: 'avengers ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-3d-avengers-logo-online-974.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/aven.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/aven.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: 'glitch ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-glitch-text-effect-style-tik-tok-983.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/tt2.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/tt2.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: 'graf ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-cool-wall-graffiti-text-effect-online-1009.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/ttgra.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/ttgra.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: '2graf ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-a-cool-graffiti-text-on-the-wall-1010.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/t2gra.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/t2gra.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: 'lion ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-lion-logo-mascot-online-938.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/lion.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/lion.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: '3neon ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/neon-text-effect-online-963.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/neon3.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/neon3.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: 'ice ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    lasiapi.textpro("https://textpro.me/ice-cold-text-effect-862.html",
-        `${match[1]}`
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/ice.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/ice.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-XTroid.addCMD({pattern: 'space ?(.*)', fromMe: wk, dontAddCMDList: true}, (async (message, match) => {
-    if (match[1] === '') return await message.sendMessage(need);
-    var topText, bottomText; 
-    if (match[1].includes(',')) {
-        var split = match[1].split(',');
-        topText = split[0];
-        bottomText = split[1];
-    } else {
-        topText = match[1];
-        bottomText = 'ㅤ';
-    }
-    lasiapi.textpro("https://textpro.me/create-space-3d-text-effect-online-985.html",
-        [`${topText}`, `${bottomText}`]
-        ).then(async (data) => { 
-          try { 
-              var download = async(uri, filename, callback) => {
-                  await request.head(uri, async(err, res, body) => {    
-                      await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-                  });
-              };
-
-              await download(`${data}`, '/root/HTM/space.jpg', async() => {                          
-                  await message.client.sendMessage(message.jid,fs.readFileSync('/root/HTM/space.jpg'), MessageType.image, { caption:  Config.CAPTION_KEY})
-              })
-          } catch(err) { 
-              console.log(err)
-          } 
-    });
-}));
-

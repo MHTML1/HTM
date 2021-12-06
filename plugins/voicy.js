@@ -1,4 +1,4 @@
-const XTroid = require('../events');
+const Asena = require('../events');
 const ffmpeg = require('fluent-ffmpeg');
 const fs = require('fs');
 const { MessageType } = require('@adiwajshing/baileys');
@@ -29,7 +29,6 @@ const recognizeAudio = () => {
 
 const convertToWav = file => {
     return ffmpeg(file)
-        .inputFormat('ogg')
         .audioCodec('pcm_s16le')
         .format('wav')
         .save('output.wav')
@@ -38,7 +37,7 @@ const convertToWav = file => {
 
 if (conf.WORKTYPE == 'private') {
 
-    XTroid.addCMD({ pattern: 'voicy', desc: Lang.USAGE, fromMe: true }, (async (message, match) => {
+    Asena.addCommand({ pattern: 'voicy', desc: Lang.USAGE, fromMe: true }, (async (message, match) => {
 
         try {
             if (message.reply_message) {
@@ -77,43 +76,7 @@ if (conf.WORKTYPE == 'private') {
 }
 if (conf.WORKTYPE == 'public') {
 
-    XTroid.addCMD({ pattern: 'voicy', desc: Lang.USAGE, fromMe: false }, (async (message, match) => {
-
-        try {
-            if (message.reply_message) {
-                if (!message.reply_message.text && !message.reply_message.video && !message.reply_message.image) {
-                    const file = await message.client.downloadAndSaveMediaMessage({
-                        key: {
-                            remoteJid: message.reply_message.jid,
-                            id: message.reply_message.id
-                        },
-                        message: message.reply_message.data.quotedMessage
-                    })
-
-
-                    convertToWav(file).on('end', async () => {
-                        const recognizedText = await recognizeAudio()
-
-                        await message.client.sendMessage(message.jid, Lang.TEXT + '```' + recognizedText + '```', MessageType.text)
-                    });
-
-
-                } else {
-                    await message.client.sendMessage(message.jid, Lang.ONLY_AUDIO, MessageType.text)
-
-                }
-            } else {
-                await message.client.sendMessage(message.jid, Lang.NEED_REPLY, MessageType.text)
-
-            }
-
-        } catch (err) {
-            console.log(err)
-        }
-
-
-    }));
-    XTroid.addCMD({ pattern: 'voicy', desc: Lang.USAGE, fromMe: true, dontAddCMDList: true }, (async (message, match) => {
+    Asena.addCommand({ pattern: 'voicy', desc: Lang.USAGE, fromMe: false }, (async (message, match) => {
 
         try {
             if (message.reply_message) {

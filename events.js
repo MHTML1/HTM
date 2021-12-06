@@ -3,14 +3,14 @@
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
 
-Lasiya - Yusuf Usta
+WhatsAsena - Yusuf Usta
 */
 
 // Komutları burada tutacağız.
 var config = require('./config');
 var Commands = [];
 
-function addCMD(info, func) {
+function addCommand(info, func) {
     // Basit bir fonksiyon, komut eklemek için.
     var types = ['photo', 'image', 'text', 'message'];
 
@@ -22,7 +22,7 @@ function addCMD(info, func) {
         deleteCommand: info['deleteCommand'] === undefined ? true : info['deleteCommand'],
         desc: info['desc'] === undefined ? '' : info['desc'],
         usage: info['usage'] === undefined ? '' : info['usage'],
-        dontAddCMDList: info['dontAddCMDList'] === undefined ? false : info['dontAddCMDList'],
+        dontAddCommandList: info['dontAddCommandList'] === undefined ? false : info['dontAddCommandList'],
         warn: info['warn'] === undefined ? '' : info['warn'],
         function: func
     };
@@ -45,6 +45,6 @@ function addCMD(info, func) {
 }
 
 module.exports = {
-    addCMD: addCMD,
+    addCommand: addCommand,
     commands: Commands
 }

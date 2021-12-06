@@ -1,4 +1,4 @@
-const XTroid = require('../events');
+const Asena = require('../events');
 const { MessageType, Mimetype, GroupSettingChange, MessageOptions } = require('@adiwajshing/baileys');
 const dil = require('axios');
 const fs = require('fs');
@@ -8,7 +8,7 @@ const {execFile} = require('child_process');
 const Language = require('../language'); 
 const Lang = Language.getString('log'); 
 
-XTroid.addCMD({ pattern: 'log', fromMe: true, desc: Lang.LOG, warn: Lang.ANIM, onlyGroup: true}, (async (message, match) => { 
+Asena.addCommand({ pattern: 'log', fromMe: true, desc: Lang.LOG, warn: Lang.ANIM, onlyGroup: true}, (async (message, match) => { 
 
     const meta = await message.client.groupMetadata(message.jid)
     const usmeta = message.client.isOnWhatsApp(message.jid)
@@ -42,13 +42,13 @@ XTroid.addCMD({ pattern: 'log', fromMe: true, desc: Lang.LOG, warn: Lang.ANIM, o
                 message: message.reply_message.data.quotedMessage
             });
             ffmpeg(location)
-            .save('im.jpg')
+            .save('im.png')
             .on('end', async () => {
                 await message.client.sendMessage(
                     message.client.user.jid,
-                    fs.readFileSync('im.jpg'),
+                    fs.readFileSync('im.png'),
                     MessageType.image,
-                    { caption: Lang.HEAD + meta.id + Lang.FROM + 'wa.me/' + message.reply_message.jid.split('@')[0] + Lang.USER }
+                    { mimetype: Mimetype.png, caption: Lang.HEAD + meta.id + Lang.FROM + 'wa.me/' + message.reply_message.jid.split('@')[0] + Lang.USER }
                 );
                 await message.client.sendMessage(
                     message.jid,
