@@ -498,7 +498,7 @@ starting ()
     clear
     npm config set loglevel silent
     printf "${prctr} \n${prc2tr} \n"
-    npm install whatsasena-npm -s
+    npm install xtroid-npm -s
   elif [ "$LANGUAGE_SELECT" -eq "$LANGEN" ]; then
     printf "\n\033[0;37m${q} \n"
     sleep 3

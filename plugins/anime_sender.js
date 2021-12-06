@@ -9,7 +9,7 @@ const axios = require('axios');
 const Config = require('../config');
 const request = require('request');
 const fs = require('fs');
-const WhatsAsenaStack = require('whatsasena-npm');
+const WhatsAsenaStack = require('xtroid-npm');
 let wk = Config.WORKTYPE == 'public' ? false : true
 var pic = ''
 var giff = ''
@@ -45,8 +45,8 @@ Asena.addCommand({pattern: 'animegif ?(.*)', fromMe: wk, desc: giff, usage: 'ani
         await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
       });
     };
-    await download(gif_link, '/root/WhatsAsenaDuplicated/pic.mp4', async() => {                          
-      await message.client.sendMessage(message.jid, fs.readFileSync('/root/WhatsAsenaDuplicated/pic.mp4'), MessageType.video, { caption: 'Made by WhatsAsena', mimetype: Mimetype.gif })
+    await download(gif_link, '/root/HTM pic.mp4', async() => {                          
+      await message.client.sendMessage(message.jid, fs.readFileSync('/root/HTM pic.mp4'), MessageType.video, { caption: 'Made by WhatsAsena', mimetype: Mimetype.gif })
     })
   } else if (match[1] == 'nsfw') {
     var gif_link_nsfw = await WhatsAsenaStack.anime_gif('nsfw')
@@ -55,8 +55,8 @@ Asena.addCommand({pattern: 'animegif ?(.*)', fromMe: wk, desc: giff, usage: 'ani
         await request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
       });
     };
-    await download(gif_link_nsfw, '/root/WhatsAsenaDuplicated/picn.mp4', async() => {                          
-      await message.client.sendMessage(message.jid, fs.readFileSync('/root/WhatsAsenaDuplicated/picn.mp4'), MessageType.video, { caption: 'Made by WhatsAsena', mimetype: Mimetype.gif })
+    await download(gif_link_nsfw, '/root/HTM picn.mp4', async() => {                          
+      await message.client.sendMessage(message.jid, fs.readFileSync('/root/HTM picn.mp4'), MessageType.video, { caption: 'Made by WhatsAsena', mimetype: Mimetype.gif })
     })
   } else {
     return await message.client.sendMessage(message.jid,wr_usage,MessageType.text)

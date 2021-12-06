@@ -5,7 +5,7 @@ Instagram: www.instagram.com/kyrie.baran
 
 const Asena = require('../events');
 const {MessageType, MessageOptions, Mimetype, Presence} = require('@adiwajshing/baileys');
-const WhatsAsenaStack = require('whatsasena-npm');
+const WhatsAsenaStack = require('xtroid-npm');
 const Language = require('../language');
 const Lang = Language.getString('scam');
 var data = {
